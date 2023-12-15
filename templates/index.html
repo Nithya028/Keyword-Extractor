@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TextEssence: Keyword Extractor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> <!-- Link to your external CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">TextEssence: Keyword Extractor</h1>
+        <form action="/get_keywords" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".txt" multiple>
+            <button type="submit">Extract Keywords</button>
+        </form>
+        {% if keywords %}
+            <h2 class="subtitle">Top 10 Keywords:</h2>
+            <table class="keywords-table">
+                <tr>
+                    <th>Keyword</th>
+                    <th>POS tag</th>
+                </tr>
+                {% for keyword in keywords %}
+                    <tr>
+                        <td>{{ keyword[0] }}</td>
+                        <td>{{ keyword[1] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+</body>
+</html>
